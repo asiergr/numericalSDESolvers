@@ -1,0 +1,1 @@
+static int* euler_murayama(int interval[2], int points, double x0);
