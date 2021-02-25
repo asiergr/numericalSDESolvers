@@ -1,12 +1,11 @@
 #include <cmath>
 #include <cstdio>
 
-template<typename Function>
-static int* euler_murayama(int interval[2], int points, double x0, Function fn) {
+static int* euler_murayama(int interval[2], int points, double x0) {
     std::default_random_engine generator;
     std::normal_distribution<double> distribution(0.0,1.0);
     // dt terms
-    double dt = (interval[0] + interval[1]) / 2;
+    double dt = (interval[0] + interval[1]) / points;
     double dW = distribution(generator) * sqrt(dt);
 
     // params for Ornsrein-Uhlenbeck function
