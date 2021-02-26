@@ -1,6 +1,7 @@
 #include "Numerical-SDE-Methods.cpp"
 #include <iostream>
 #include <ostream>
+#include <fstream>
 
 int main(int argc, char* argv[]) {
 
@@ -11,7 +12,13 @@ int main(int argc, char* argv[]) {
     
     euler_murayama(out, interval, points, x0);
 
+    //open file
+    std::ofstream file;
+    file.open("resulsts.txt");
+
     for (int i = 0 ; i < 1000; i++) {
-        std::cout << out[i] << std::endl;
+        file << out[i] << std::endl;
     }
+    file.close();
+    return 1;
 }
