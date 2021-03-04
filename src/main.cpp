@@ -1,17 +1,9 @@
-
-#ifndef NUMERICAL_METHODS_H
-#define NUMERICAL_METHODS_H
-#include "Numerical-SDE-Methods.h"
-#endif
-
-#ifndef SDE_H
-#define SDE_H
-#include "SDE.h"
-#endif
-
 #include <iostream>
 #include <ostream>
 #include <fstream>
+
+#include "SDEs.h"
+#include "NumericalMethods.h"
 
 int main(int argc, char* argv[]) {
 
@@ -19,8 +11,10 @@ int main(int argc, char* argv[]) {
     int points = 1000;
     double out[points];
     int x0 = 0;
+
+    OrnsteinUhlenbeck fn(0.3, 0.4, 0.5);
     
-    euler_murayama(out, interval, points, x0);
+    euler_murayama(out, interval, points, x0, fn);
 
     //open file
     std::ofstream file;

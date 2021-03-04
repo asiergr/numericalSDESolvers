@@ -1,14 +1,3 @@
-#include <cmath>
-#include <random>
-#include "Numerical-SDE-Methods.h"
-
-#ifndef SDE_H
-#define SDE_H
-#include "SDEs.h"
-#endif
-
-
-
 static void euler_murayama(double out[], double interval[2],
                             int points, double x0, SDE sde) {
     std::default_random_engine generator;
@@ -18,12 +7,6 @@ static void euler_murayama(double out[], double interval[2],
     double t_n = interval[1];
     // dt terms
     double dt = (t_n - t_0) / points;
-    
-
-    // params for Ornsrein-Uhlenbeck function
-    double theta = 0.7;
-    double mu = 1.5;
-    double sigma = 0.06;
 
     // output
     out[0] = x0;
@@ -35,7 +18,7 @@ static void euler_murayama(double out[], double interval[2],
         // function
         double t = t_0 + (i - 1)*dt;
         double y_i = out[i - 1];
-        double result = y_i + (theta*(mu - y_i))*dt + sigma * dW;
+        double result = y_i + sde.a(y_i)*dt + sde.b(y_i) * dW;
 
         out[i] = result;
 

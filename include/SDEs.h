@@ -1,3 +1,6 @@
+#ifndef SDE_H
+#define SDE_H
+
 class SDE {
     public:
         virtual double a(double Y_t) = 0;
@@ -26,3 +29,5 @@ class BlackScholes: public SDE {
         double a(double Y_t);
         double b(double Y_t);
 };
+
+#endif
