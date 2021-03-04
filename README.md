@@ -1,4 +1,4 @@
-# numericalSDESolvers
+# Methods to Numerically Solve Stochastic Differential Equations
 This is a combination of C++ programs and Python scripts used to find and visualise numerical solutions for Stochastic Differential Equations.
 
 ## Methods
