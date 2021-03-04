@@ -1,7 +1,11 @@
 #include <cmath>
 #include <random>
 #include "Numerical-SDE-Methods.h"
+
+#ifndef SDE_H
+#define SDE_H
 #include "SDEs.h"
+#endif
 
 
 

@@ -1,4 +1,14 @@
-#include "Numerical-SDE-Methods.cpp"
+
+#ifndef NUMERICAL_METHODS_H
+#define NUMERICAL_METHODS_H
+#include "Numerical-SDE-Methods.h"
+#endif
+
+#ifndef SDE_H
+#define SDE_H
+#include "SDE.h"
+#endif
+
 #include <iostream>
 #include <ostream>
 #include <fstream>
