@@ -15,8 +15,8 @@ class OrnsteinUhlenbeck: public SDE {
 
     public:
         OrnsteinUhlenbeck(double theta, double mu, double sigma);
-        double a(double Y_t);
-        double b(double Y_t);
+        double a(double Y_t) override;
+        double b(double Y_t) override;
 };
 
 class BlackScholes: public SDE {
@@ -26,8 +26,7 @@ class BlackScholes: public SDE {
 
     public:
         BlackScholes(double mu, double sigma);
-        double a(double Y_t);
-        double b(double Y_t);
+        double a(double Y_t) override;
+        double b(double Y_t) override;
 };
-
 #endif

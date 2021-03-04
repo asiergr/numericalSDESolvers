@@ -1,50 +1,28 @@
-#include "SDEs.h"
+#include "./../include/SDEs.h"
 
-class SDE {
-    public:
-        // pure virtual functions
-        virtual double a(double Y_t) = 0;
-        virtual double b(double Y_t) = 0;
-};
-
-class OrnsteinUhlenbeck: public SDE {
-    private:
-        double theta;
-        double mu;
-        double sigma;
-
-    public:
-        OrnsteinUhlenbeck(double theta, double mu, double sigma) {
+OrnsteinUhlenbeck::OrnsteinUhlenbeck(double theta, double mu, double sigma) {
             this->theta = theta;
             this->mu = mu;
             this->sigma = sigma;
-        }
+}
 
-        double a(double Y_t) override {
-            return theta*(mu - Y_t);
-        }
+double OrnsteinUhlenbeck::a(double Y_t) {
+    return theta*(mu - Y_t);
+}
 
-        double b(double Y_t) override {
-            return sigma;
-        }
-};
+double OrnsteinUhlenbeck::b(double Y_t) {
+            return this->sigma;
+}
 
-class BlackScholes: public SDE {
-    private:
-        double mu;
-        double sigma;
+BlackScholes::BlackScholes(double mu, double sigma) {
+    this->mu = mu;
+    this->sigma = sigma;
+}
 
-    public:
-        BlackScholes(double mu, double sigma) {
-            this->mu = mu;
-            this->sigma = sigma;
-        }
+double BlackScholes::a(double Y_t) {
+    return this->mu*Y_t;
+}
 
-        double a(double Y_t) override {
-            return mu*Y_t;
-        }
-
-        double b(double Y_t) override {
-            return Y_t*sigma;
-        }
-};
+double BlackScholes::b(double Y_t) {
+    return Y_t*this->sigma;
+}
