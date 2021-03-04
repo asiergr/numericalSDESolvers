@@ -26,3 +26,23 @@ class OrnsteinUhlenbeck: public SDE {
             return sigma;
         }
 };
+
+class BlackScholes: public SDE {
+    private:
+        double mu;
+        double sigma;
+
+    public:
+        BlackScholes(double mu, double sigma) {
+            this->mu = mu;
+            this->sigma = sigma;
+        }
+
+        double a(double Y_t) override {
+            return mu*Y_t;
+        }
+
+        double b(double Y_t) override {
+            return Y_t*sigma;
+        }
+};
