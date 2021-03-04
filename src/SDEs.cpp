@@ -12,6 +12,12 @@ class OrnsteinUhlenbeck: public SDE {
         double sigma;
 
     public:
+        OrnsteinUhlenbeck(double theta, double mu, double sigma) {
+            this->theta = theta;
+            this->mu = mu;
+            this->sigma = sigma;
+        }
+
         double a(double Y_t) override {
             return theta*(mu - Y_t);
         }

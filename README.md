@@ -1,5 +1,12 @@
 # numericalSDESolvers
-This is a combination of C++ programs and Python scripts used to find numeric solutions for Stochastic Differential Equations.
+This is a combination of C++ programs and Python scripts used to find and visualise numerical solutions for Stochastic Differential Equations.
+
+## Methods
+* Euler-Maruyama
+
+## Equations
+* Ornstein-Uhlenbeck process
+* Black-Scholes
 
 ## TODO:
 * General Euler-Maruyama Method to work for any SDE
