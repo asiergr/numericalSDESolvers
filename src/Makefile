@@ -20,16 +20,23 @@
   # Gets all locations of object files adn puts it in a macro
   OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
+  # Rule: All .o files depend on their .c versions. Make needs to compile
+  # the .c file using the CC compiler
+  # -c says to generate the object file
+  # -o $@ says to put it in the name to the left of :
+  # $< is the first item in the dependencies list
+
   $(ODIR)/%.o: %.c $(DEPS)
 	          $(CC) -c -o $@ $< $(CFLAGS)
 
-  # The build target 
-  TARGET = main
+  # Different builds
+  # Build all the object files
+  all: $(OBJ)
+	  $(CC) -o $@ $^ $(CFLAGS)
  
-  all: $(TARGET)
- 
-  $(TARGET): $(TARGET).c
-              $(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
- 
-  clean:
-              $(RM) $(TARGET)
+  # Don't do anything with a file named clean
+  .PHONY clean
+
+  #Cleans all object files
+  clean: 
+    rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~ 
