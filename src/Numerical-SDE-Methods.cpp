@@ -1,7 +1,12 @@
 #include <cmath>
 #include <random>
+#include "Numerical-SDE-Methods.h"
+#include "SDEs.h"
 
-static void euler_murayama(double out[], double interval[2], int points, double x0) {
+
+
+static void euler_murayama(double out[], double interval[2],
+                            int points, double x0, SDE sde) {
     std::default_random_engine generator;
     std::normal_distribution<double> distribution(0.0,1.0);
     // unpacking
