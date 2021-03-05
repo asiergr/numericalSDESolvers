@@ -6,8 +6,10 @@
 
 class NumericalMethod {
     public:
-        void euler_murayama(double out[], double interval[2], int points, double x0, SDE* sde);
-        void milstein(double out[], double interval[2],
-                          int points, double x0, SDE* sde);
+        void euler_murayama(double out[], double interval[2], int points,
+                    double x0, double (*a)(double y_t, double t), double (*b)(double y_t, double t));
+
+        void milstein(double out[], double interval[2], int points,
+                  double x0, double (*a)(double y_t, double t), double (*b)(double y_t, double t));
 };
 #endif
