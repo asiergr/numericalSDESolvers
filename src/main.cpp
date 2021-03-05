@@ -8,14 +8,14 @@
 int main(int argc, char* argv[]) {
 
     // Initialise test variables
-    double interval[2] = {3.0,7.0};
+    double interval[2] = {0.0,7.0};
     int points = 1000;
     double out[points];
-    int x0 = 0;
+    int x0 = 40;
 
     // Initialise objects
     NumericalMethod nm;
-    OrnsteinUhlenbeck fn(0.7, 1.5, 0.05);
+    BlackScholes fn(1.5, 0.05);
     SDE* fnp = &fn;
     
     nm.euler_murayama(out, interval, points, x0, fnp);

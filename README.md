@@ -11,3 +11,7 @@ This is a combination of C++ programs and Python scripts used to find and visual
 ## TODO:
 * Implement Milstein method
 * Call C++ function directly from Python instead of I/O to file
+
+## Questions:
+* How to model systems of SDEs?
+* 
