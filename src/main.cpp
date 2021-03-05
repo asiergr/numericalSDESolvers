@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
 
     //open file
     std::ofstream file;
-    file.open("./../resulsts.txt");
+    file.open("./../results.txt");
 
     for (int i = 0 ; i < 1000; i++) {
         file << out[i] << std::endl;
