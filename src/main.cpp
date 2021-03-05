@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
 
     // Initialise objects
     NumericalMethod nm;
-    OrnsteinUhlenbeck fn(0.3, 0.4, 0.5);
+    OrnsteinUhlenbeck fn(0.7, 1.5, 0.05);
     SDE* fnp = &fn;
     
     nm.euler_murayama(out, interval, points, x0, fnp);

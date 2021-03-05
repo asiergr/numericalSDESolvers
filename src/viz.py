@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 out = []
-with open("./../resulsts.txt", "r") as res:
+with open("./../results.txt", "r") as res:
     points = res.read().split("\n")
     for point in points:
         if point != "":

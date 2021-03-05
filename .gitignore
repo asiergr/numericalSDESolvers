@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+#IO text file
+results.txt
