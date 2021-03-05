@@ -2,47 +2,41 @@
 #include <math.h>
 #include <vector>
 
-void NumericalMethod::euler_murayama(double out[], double interval[2], int points,
+void NumericalMethod::euler_murayama(std::vector<double> out, double t0, double tn, int points,
                     double x0, double (*a)(double y_t, double t), double (*b)(double y_t, double t)) {
   std::default_random_engine generator;
   std::normal_distribution<double> distribution(0.0,1.0);
 
-  // unpacking
-  double t_0 = interval[0];
-  double t_n = interval[1];
   // dt terms
-  double dt = (t_n - t_0) / points;
+  double dt = (tn - t0) / points;
 
   // output
-  out[0] = x0;
+  out.push_back(x0);
 
   for (int i = 1; i < points; i++) {
       // generate noise
       double dW = distribution(generator) * sqrt(dt);
       // function
-      double t = t_0 + (i - 1)*dt;
-      double y_i = out[i - 1];
+      double t = t0 + (i - 1)*dt;
+      double y_i = out.at(i - 1);
       double y_i_plus = y_i + a(y_i, t)*dt + b(y_i, t) * dW;
-      out[i] = y_i_plus;
+      out.push_back(y_i_plus);
     }
 }
 
-void NumericalMethod::milstein(double out[], double interval[2], int points,
+void NumericalMethod::milstein(std::vector<double> out, double t0, double tn, int points,
                   double x0, double (*a)(double y_t, double t), double (*b)(double y_t, double t)) {
   // generate random engines
   std::default_random_engine generator;
   std::normal_distribution<double> distribution(0.0,1.0);
 
-  // unpacking
-  double t0 = interval[0];
-  double tn = interval[1];
   // dt terms
   double dt = (tn - t0) / points;
 
   // output
-  out[0] = x0;
+  out.push_back(x0);
   // Now we are going to estimate x_1 because we need 2 initial terms for out approximation
-  out[1] = x0 + distribution(generator) * sqrt(dt);
+  out.push_back(x0 + distribution(generator) * sqrt(dt));
 
   // Stuff for our approximation of b'(y_t, t)
     std::vector<double> b_i;
@@ -54,14 +48,15 @@ void NumericalMethod::milstein(double out[], double interval[2], int points,
     // generate noise
     double dW = distribution(generator) * sqrt(dt);
     // function
-    double t = t_0 + (i - 1)*dt;
+    double t = t0 + (i - 1)*dt;
     double y_i = out[i - 1];
     double y_i_minus = out[i - 2];
 
-
+    // Approximation of b' = (b(y_i) - b(y_i-1)) / 2
     double b_prime = (b_i.at(i - 1) - b_i.at(i - 2)) / dt;
 
-
-    double y_i_plus = y_i + a(y_i, t) * dt + b(y_i, t) * dt + 0.5 * 
+    // Calculation of y_i+1
+    double y_i_plus = y_i + a(y_i, t) * dt + b(y_i, t) * dt + 0.5 * b(y_i, t) * b_prime * (dW * dW - dt);
+    out.push_back(y_i_plus);
   }
 }
