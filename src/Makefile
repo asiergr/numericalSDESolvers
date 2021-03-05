@@ -7,8 +7,7 @@
   # compiler flags:
   #  -g     - this flag adds debugging information to the executable file
   #  -Wall  - this flag is used to turn on most compiler warnings
-  #  -I     - looks at current directory
-  CFLAGS  = -I -g -Wall $(IDIR)
+  CFLAGS  = -g -Wall
  
   # Write down all the include files/dependencies
   _DEPS = SDEs.h NumericalMethods.h
@@ -31,11 +30,12 @@
 
   # Different builds
   # Build all the object files
-  all: $(OBJ)
+  main: $(OBJ)
 	  $(CC) -o $@ $^ $(CFLAGS)
  
   # Don't do anything with a file named clean
   .PHONY: clean
 
   #Cleans all object files
-  clean: rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~
+  clean: 
+    rm -f $(ODIR)/*.o *~ core $(IDIR)/*~

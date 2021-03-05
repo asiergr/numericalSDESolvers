@@ -3,8 +3,8 @@
 
 class SDE {
     public:
-        virtual double a(double Y_t) = 0;
-        virtual double b(double Y_t) = 0;
+        virtual double a(double Y_t, double t) = 0;
+        virtual double b(double Y_t, double t) = 0;
 };
 
 class OrnsteinUhlenbeck: public SDE {
@@ -15,8 +15,8 @@ class OrnsteinUhlenbeck: public SDE {
 
     public:
         OrnsteinUhlenbeck(double theta, double mu, double sigma);
-        double a(double Y_t) override;
-        double b(double Y_t) override;
+        double a(double Y_t, double t) override;
+        double b(double Y_t, double t) override;
 };
 
 class BlackScholes: public SDE {
@@ -26,7 +26,7 @@ class BlackScholes: public SDE {
 
     public:
         BlackScholes(double mu, double sigma);
-        double a(double Y_t) override;
-        double b(double Y_t) override;
+        double a(double Y_t, double t) override;
+        double b(double Y_t, double t) override;
 };
 #endif

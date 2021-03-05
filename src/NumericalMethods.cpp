@@ -1,9 +1,11 @@
 #include "./../include/NumericalMethods.h"
 
-static void euler_murayama(double out[], double interval[2],
-                            int points, double x0, SDE sde) {
+void NumericalMethod::euler_murayama(double out[], double interval[2],
+                            int points, double x0, SDE* sde) {
+
     std::default_random_engine generator;
     std::normal_distribution<double> distribution(0.0,1.0);
+
     // unpacking
     double t_0 = interval[0];
     double t_n = interval[1];
@@ -20,7 +22,7 @@ static void euler_murayama(double out[], double interval[2],
         // function
         double t = t_0 + (i - 1)*dt;
         double y_i = out[i - 1];
-        double result = y_i + sde.a(y_i)*dt + sde.b(y_i) * dW;
+        double result = y_i + sde->a(y_i, t)*dt + sde->b(y_i, t) * dW;
 
         out[i] = result;
 

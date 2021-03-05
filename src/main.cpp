@@ -2,19 +2,23 @@
 #include <ostream>
 #include <fstream>
 
-#include "SDEs.h"
-#include "NumericalMethods.h"
+#include "./../include/SDEs.h"
+#include "./../include/NumericalMethods.h"
 
 int main(int argc, char* argv[]) {
 
+    // Initialise test variables
     double interval[2] = {3.0,7.0};
     int points = 1000;
     double out[points];
     int x0 = 0;
 
+    // Initialise objects
+    NumericalMethod nm;
     OrnsteinUhlenbeck fn(0.3, 0.4, 0.5);
+    SDE* fnp = &fn;
     
-    euler_murayama(out, interval, points, x0, fn);
+    nm.euler_murayama(out, interval, points, x0, fnp);
 
     //open file
     std::ofstream file;
